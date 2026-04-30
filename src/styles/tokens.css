@@ -1,0 +1,220 @@
+/* ============================================================
+   CHRONOS GRID — DESIGN TOKENS
+   Maze Runner × WCKD aesthetic: concrete, underground sage,
+   cold cyan alarm, warm-white text, organic black void.
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     COLOR: VOID / MAZE BODY
+     Slightly green-tinted black — feels biological, not parking-
+     garage. The maze IS alive.
+     ---------------------------------------------------------- */
+  --color-void:         #070809;   /* deepest — outer darkness    */
+  --color-void-alt:     #0c0f0d;   /* slight green cast           */
+  --color-void-mid:     #0f120f;   /* used for panel backgrounds  */
+  --color-void-warm:    #101009;   /* title-screen centre         */
+
+  /* ----------------------------------------------------------
+     COLOR: GLADE HAZE
+     Muted sage — hope, safety, exit glints, HUD chrome.
+     NEVER neon. This is recalled grass, not real grass.
+     ---------------------------------------------------------- */
+  --color-glade-deep:   #3d4a38;   /* dark muted sage             */
+  --color-glade-mid:    #4a5c46;   /* moss — light-disc rim tint  */
+  --color-glade-light:  #5c6b54;   /* lighter sage, borders hover */
+
+  /* ----------------------------------------------------------
+     COLOR: CONCRETE / PANEL
+     The industrial shell. Stamped metal, grey walls.
+     ---------------------------------------------------------- */
+  --color-concrete:          #8a8f8a;   /* wall faces, dividers        */
+  --color-concrete-dark:     #6b706b;   /* secondary / sublabels       */
+  --color-concrete-mid:      #3a3d3a;   /* wall base render colour     */
+  --color-concrete-light:    #4a4d4a;   /* wall highlight edge         */
+  --color-concrete-shadow:   #2a2d2a;   /* wall shadow edge            */
+
+  /* ----------------------------------------------------------
+     COLOR: TEXT HIERARCHY
+     Slightly warm white — cinematic, never pure #fff.
+     ---------------------------------------------------------- */
+  --color-text-primary:   #e8ebe6;   /* body copy, player label   */
+  --color-text-secondary: #8a8f8a;   /* sublabels, help bar       */
+  --color-text-dim:       #5a5f5a;   /* disabled, hints           */
+  --color-text-faint:     #3a3f3a;   /* ultra-subtle metadata     */
+
+  /* ----------------------------------------------------------
+     COLOR: ALARM / WCKD CYAN
+     Only 5 % of the palette. Use for: countdown timers,
+     "SYSTEM" lines, shift warnings, ghost-wall tint.
+     Never on backgrounds, never full-opacity on light surfaces.
+     ---------------------------------------------------------- */
+  --color-alarm:          #6ae8ff;
+  --color-alarm-70:        rgba(106, 232, 255, 0.70);
+  --color-alarm-dim:       rgba(106, 232, 255, 0.45);
+  --color-alarm-faint:     rgba(106, 232, 255, 0.12);
+  --color-alarm-bg:        rgba(106, 232, 255, 0.06);
+
+  /* ----------------------------------------------------------
+     COLOR: EXIT / HOPE
+     Single sage-green pop used ONLY on the real exit tile
+     and the win-screen glade strip.
+     ---------------------------------------------------------- */
+  --color-exit:            #7d9a6b;
+  --color-exit-dim:        rgba(125, 154, 107, 0.35);
+  --color-exit-faint:      rgba(125, 154, 107, 0.14);
+
+  /* ----------------------------------------------------------
+     COLOR: WARNING / AMBER
+     Shift-warning scanline only. Not a full-red banner.
+     ---------------------------------------------------------- */
+  --color-warning:         #c8a84b;
+  --color-warning-dim:     rgba(200, 168, 75, 0.60);
+  --color-warning-faint:   rgba(200, 168, 75, 0.18);
+
+  /* ----------------------------------------------------------
+     COLOR: DECOY EXIT (muted red-brown — "wrong, but plausible")
+     ---------------------------------------------------------- */
+  --color-decoy:           #8a5c5c;
+  --color-decoy-dim:       rgba(138, 92, 92, 0.40);
+
+  /* ----------------------------------------------------------
+     BORDERS
+     All borders use the void/concrete family.
+     ---------------------------------------------------------- */
+  --border-outer:   1px solid #2a2f2a;   /* viewport outer ring      */
+  --border-inner:   1px solid #1a1f1a;   /* viewport inner hairline  */
+  --border-panel:   1px solid #2a2d2a;   /* HUD panel divider        */
+  --border-card:    1px solid #3a3d3a;   /* run-select card          */
+  --border-card-hover: 1px solid var(--color-glade-light);
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY
+     One condensed sans for "stamped on metal" labels.
+     One tabular mono for data / timers.
+     ---------------------------------------------------------- */
+  --font-condensed: 'Rajdhani', 'Barlow Condensed', 'DIN Condensed', sans-serif;
+  --font-mono:      'Share Tech Mono', 'JetBrains Mono', 'IBM Plex Mono', monospace;
+
+  /* Font sizes (rem, base 16 px) */
+  --fs-2xs:  0.5625rem;   /*  9 px */
+  --fs-xs:   0.625rem;    /* 10 px */
+  --fs-sm:   0.75rem;     /* 12 px */
+  --fs-md:   0.875rem;    /* 14 px */
+  --fs-base: 1rem;        /* 16 px */
+  --fs-lg:   1.125rem;    /* 18 px */
+  --fs-xl:   1.25rem;     /* 20 px */
+  --fs-2xl:  1.5rem;      /* 24 px */
+  --fs-3xl:  2rem;        /* 32 px */
+  --fs-4xl:  2.75rem;     /* 44 px */
+  --fs-5xl:  3.5rem;      /* 56 px */
+
+  /* Letter-spacing presets */
+  --ls-tight:  -0.01em;
+  --ls-normal:  0em;
+  --ls-label:   0.04em;
+  --ls-title:   0.08em;
+  --ls-stamp:   0.12em;   /* RUN I, SIGNAL, SHIFT — all-caps stamped */
+  --ls-mono:    0.03em;
+
+  /* Line-height */
+  --lh-tight:  1.1;
+  --lh-snug:   1.25;
+  --lh-normal: 1.4;
+  --lh-loose:  1.6;
+
+  /* ----------------------------------------------------------
+     SPACING SCALE (multiples of 4 px)
+     ---------------------------------------------------------- */
+  --sp-0:   0px;
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:   12px;
+  --sp-4:   16px;
+  --sp-5:   20px;
+  --sp-6:   24px;
+  --sp-8:   32px;
+  --sp-10:  40px;
+  --sp-12:  48px;
+  --sp-16:  64px;
+  --sp-20:  80px;
+  --sp-24:  96px;
+
+  /* ----------------------------------------------------------
+     LAYOUT — HUD ANATOMY
+     ---------------------------------------------------------- */
+  --hud-height-top:     36px;   /* steel-strip top bar            */
+  --hud-height-bottom:  28px;   /* help / controls bar            */
+  --caption-height:     56px;   /* lower-third whisper caption    */
+  --scanline-height:    2px;    /* shift-warning amber stripe     */
+
+  /* ----------------------------------------------------------
+     GAME CANVAS
+     ---------------------------------------------------------- */
+  --tile-size:           48px;
+  --light-radius-tiles:  2.5;
+
+  /* ----------------------------------------------------------
+     TRANSITIONS / ANIMATION
+     ---------------------------------------------------------- */
+  --transition-fast:    150ms ease;
+  --transition-mid:     300ms ease;
+  --transition-slow:    600ms ease;
+  --transition-linear:  300ms linear;
+
+  /* Specific durations referenced in JS (kept in CSS too for coherence) */
+  --dur-scanline-in:    300ms;
+  --dur-ghost-wall:     1800ms;
+  --dur-shift-anim:     1720ms;
+  --dur-typewriter-cps: 40;     /* characters per second (unitless, read by JS) */
+
+  /* ----------------------------------------------------------
+     VISUAL FX
+     ---------------------------------------------------------- */
+  --grain-opacity-base:      0.025;
+  --grain-opacity-dread-max: 0.055;
+  --vignette-feather:        0.35;   /* fraction of light-radius */
+
+  /* Glade strip at bottom of title / win screens */
+  --glade-strip-height:  4%;
+  --glade-strip-blur:    2px;
+
+  /* ----------------------------------------------------------
+     Z-INDEX LAYERS
+     ---------------------------------------------------------- */
+  --z-canvas:      10;
+  --z-hud:         50;
+  --z-caption:     45;
+  --z-scanline:    48;
+  --z-overlay:     80;
+  --z-grain:      200;
+  --z-frame:      100;
+
+  /* ----------------------------------------------------------
+     SHADOWS / GLOWS
+     ---------------------------------------------------------- */
+  --shadow-panel:   0 2px 8px rgba(0, 0, 0, 0.6);
+  --shadow-card:    0 1px 4px rgba(0, 0, 0, 0.5);
+  --glow-exit:      0 0 24px rgba(125, 154, 107, 0.35);
+  --glow-alarm:     0 0 16px rgba(106, 232, 255, 0.25);
+  --glow-title:     0 0 40px rgba(74, 92, 70, 0.30),
+                    0 2px 0 rgba(0, 0, 0, 0.50);
+
+  /* ----------------------------------------------------------
+     LANDING — GORGE / GLASS (Coolors 5-lock: void → mint)
+     #021a12 · #063024 · #1a4d40 · #3d8f78 · #b8ffd9
+     ---------------------------------------------------------- */
+  --void:               #021a12;
+  --cliff:              #063024;
+  --mist:               #1a4d40;
+  --mist-bright:        #3d8f78;
+  --mint-glow:          #b8ffd9;
+  --mist-glow:          rgba(184, 255, 217, 0.32);
+  --glass-bg:           rgba(255, 255, 255, 0.1);
+  --glass-bg-strong:    rgba(255, 255, 255, 0.14);
+  --glass-edge:         rgba(234, 255, 245, 0.22);
+  --gorge-body-text:    #eaf8f2;
+  --gorge-spark:        rgba(234, 255, 245, 0.38);
+  --text:               var(--gorge-body-text);
+}

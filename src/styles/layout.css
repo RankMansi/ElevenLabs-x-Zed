@@ -1,0 +1,232 @@
+/* === CHRONOS GRID — LAYOUT ================================================
+   Viewport frame inspired by the Maze Runner industrial shell.
+   80% charcoal + sage + concrete. Industrial, not cyberpunk.
+   ========================================================================== */
+
+/* ── Viewport ─────────────────────────────────────────────────────────────── */
+
+.game-viewport {
+  position: fixed;
+  inset: 0;
+  background: var(--color-void);
+  overflow: hidden;
+
+  /* 1px outer border: rough concrete edge */
+  outline: var(--border-outer);
+  outline-offset: -1px;
+}
+
+/* Inner hairline — suggests looking through a thick industrial frame */
+.game-viewport::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border: var(--border-inner);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Bottom-third ground haze — organic underground suggestion */
+.game-viewport::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 33%;
+  background: linear-gradient(
+    to top,
+    rgba(15, 26, 18, 0.18) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Canvas container ──────────────────────────────────────────────────────── */
+
+.canvas-container {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+/* ── Top HUD strip — painted steel bar ────────────────────────────────────── */
+
+.hud-strip-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--hud-height-top);
+  background: linear-gradient(180deg, #2f5245 0%, #1f3d32 100%);
+  border-bottom: 2px solid #0d1f17;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--sp-4);
+
+  z-index: 50;
+
+  box-shadow:
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+/* Micro noise texture on the steel strip via pseudo-element */
+.hud-strip-top::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='36'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='36' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Left cluster: Run name + subtitle */
+.hud-run-info {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  position: relative;
+  z-index: 1;
+}
+
+/* Right cluster: timers */
+.hud-timer-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Bottom help bar ───────────────────────────────────────────────────────── */
+
+.hud-strip-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--hud-height-bottom);
+  background: linear-gradient(0deg, #1a332b 0%, #274a3f 100%);
+  border-top: 2px solid #0d1f17;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--sp-4);
+
+  z-index: 50;
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ── Lower-third caption band ─────────────────────────────────────────────── */
+
+.caption-area {
+  position: absolute;
+  bottom: var(--hud-height-bottom);
+  left: 0;
+  right: 0;
+  min-height: var(--caption-height);
+
+  display: flex;
+  align-items: flex-end;
+
+  padding: 0 var(--sp-6) var(--sp-1);
+  z-index: 45;
+  pointer-events: none;
+}
+
+/* ── Scanline shift-warning stripe ───────────────────────────────────────── */
+/*
+   Slides in from the left over 300 ms when a shift is imminent.
+   Thin amber horizontal band — WCKD "system alert" feel, not a red banner.
+*/
+
+.scanline-warning {
+  position: absolute;
+  top: var(--hud-height-top);
+  left: 0;
+  right: 0;
+  height: var(--scanline-height);
+
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--color-warning-dim) 15%,
+    var(--color-warning)     50%,
+    var(--color-warning-dim) 85%,
+    transparent              100%
+  );
+
+  z-index: 48;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--transition-mid);
+  pointer-events: none;
+}
+
+.scanline-warning.active {
+  transform: scaleX(1);
+}
+
+/* ── Full-screen overlays (pause / win / lose) ────────────────────────────── */
+
+.screen-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+  background: rgba(26, 51, 43, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+/* Inset hairline on overlays */
+.screen-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: var(--border-inner);
+  pointer-events: none;
+}
+
+/* ── Glade hope strip (title / win screens only) ─────────────────────────── */
+/*
+   A single heavily-blurred horizontal band at the very bottom of the screen.
+   Reads "grass at the edge of frame" without showing any literal grass texture.
+*/
+
+.glade-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4%;
+  background: linear-gradient(
+    to top,
+    rgba(61, 74, 56, 0.22) 0%,
+    rgba(61, 74, 56, 0.06) 60%,
+    transparent            100%
+  );
+  filter: blur(3px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glade-strip--win {
+  height: 8%;
+  background: linear-gradient(
+    to top,
+    rgba(125, 154, 107, 0.28) 0%,
+    rgba(61,  74,  56, 0.10)  50%,
+    transparent               100%
+  );
+}

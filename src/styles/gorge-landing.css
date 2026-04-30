@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* CHRONOS GRID — title screen: gorge / monolith / glass runs (.cg-shell) */
+
+.cg-shell.ms-shell {
+  background: #010807;
+  color: var(--gorge-body-text);
+}
+
+.cg-shell :is(a:focus-visible, button:focus-visible, .glass-card__btn:focus-visible) {
+  outline: 2px solid #b8ffe0;
+  outline-offset: 3px;
+}
+
+.cg-layer-stack {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cg-layer--glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 48% 65% at 50% 38%, rgba(90, 200, 170, 0.35) 0%, transparent 58%),
+    radial-gradient(ellipse 120% 75% at 50% 32%, rgba(26, 77, 64, 0.55) 0%, rgba(6, 48, 36, 0.85) 48%, var(--void) 100%),
+    linear-gradient(180deg, #010c09 0%, var(--void) 100%);
+}
+
+.cg-layer--silhouette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(1, 8, 6, 0.95) 0%, transparent 16%),
+    linear-gradient(to top, rgba(1, 10, 8, 0.92) 0%, transparent 24%),
+    radial-gradient(ellipse 90% 50% at 50% 100%, rgba(0, 0, 0, 0.55), transparent 55%);
+  mix-blend-mode: multiply;
+  opacity: 0.88;
+}
+
+.cg-layer--water {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: min(28%, 220px);
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(2, 26, 18, 0.35) 45%,
+      transparent 100%
+    ),
+    repeating-linear-gradient(
+      92deg,
+      transparent 0 36px,
+      rgba(140, 255, 210, 0.045) 36px 37px,
+      transparent 37px 72px
+    );
+  opacity: 0.9;
+}
+
+.cg-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: repeating-linear-gradient(
+    -11deg,
+    rgba(255, 255, 255, 0.04) 0 1px,
+    transparent 1px 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+.cg-twinkles {
+  position: absolute;
+  inset: 0;
+}
+
+.cg-twinkle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(200, 255, 230, 0.65);
+  box-shadow: 0 0 6px rgba(160, 255, 210, 0.45);
+  opacity: 0.5;
+  animation: cg-twinkle 5s ease-in-out infinite;
+}
+
+.cg-twinkle:nth-child(3n) {
+  animation-duration: 6.8s;
+}
+.cg-twinkle:nth-child(5n) {
+  animation-duration: 3.6s;
+}
+
+@keyframes cg-twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.4);
+  }
+}
+
+.cg-shell__body {
+  position: relative;
+  z-index: 2;
+  min-height: 100%;
+}
+
+.cg-audio-hint-strip {
+  position: sticky;
+  bottom: 0;
+  z-index: 12;
+  margin-top: clamp(1.5rem, 4vh, 2.5rem);
+  padding: 14px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(
+    to top,
+    rgba(1, 10, 8, 0.94) 0%,
+    rgba(1, 10, 8, 0.82) 45%,
+    rgba(1, 10, 8, 0.55) 100%
+  );
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+}
+
+.cg-audio-hint {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  font-family: var(--font-mono, 'Share Tech Mono', ui-monospace, monospace);
+  font-size: clamp(0.62rem, 1.9vw, 0.72rem);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(168, 230, 207, 0.62);
+  line-height: 1.45;
+}
+
+.cg-landing-main {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 1px);
+}
+
+/* --- Title hero (monolith + copy) --- */
+.cg-title-hero {
+  display: flex;
+  flex-direction: column;
+  min-height: min(100vh, 920px);
+  padding: clamp(1.5rem, 4vh, 2.75rem) clamp(1rem, 4vw, 2rem) clamp(0.75rem, 2vh, 1.25rem);
+}
+
+.cg-title-sky {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: clamp(220px, 38vh, 420px);
+  padding-bottom: clamp(0.5rem, 2vh, 1.25rem);
+}
+
+.cg-monolith-cluster {
+  position: relative;
+  width: min(52vw, 320px);
+  height: min(48vh, 380px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.cg-monolith {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      185deg,
+      rgba(30, 90, 72, 0.55) 0%,
+      rgba(8, 40, 32, 0.95) 38%,
+      #021208 100%
+    ),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, transparent 30%, transparent 70%, rgba(0, 0, 0, 0.45) 100%);
+  clip-path: polygon(12% 100%, 32% 18%, 48% 0%, 68% 20%, 88% 100%);
+  box-shadow:
+    0 0 60px rgba(60, 200, 150, 0.12),
+    inset 0 0 40px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(0 12px 40px rgba(0, 20, 14, 0.65));
+}
+
+.cg-monolith__ridge {
+  position: absolute;
+  top: 12%;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(180, 255, 220, 0.35), transparent 70%);
+  opacity: 0.5;
+}
+
+.cg-monolith__ridge--l {
+  left: 38%;
+}
+.cg-monolith__ridge--r {
+  right: 38%;
+}
+
+.cg-rise-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.cg-rise {
+  position: absolute;
+  bottom: 58%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  margin-left: -1.5px;
+  border-radius: 50%;
+  background: #dfffeb;
+  box-shadow: 0 0 10px 2px rgba(140, 255, 200, 0.55);
+  animation-name: cg-rise-float;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes cg-rise-float {
+  0% {
+    transform: translateY(18px) scale(0.45);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(calc(-1 * min(42vh, 300px))) scale(0.25);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cg-twinkle {
+    animation: none !important;
+    opacity: 0.35;
+  }
+  .cg-rise {
+    animation: none !important;
+    opacity: 0.35;
+    transform: translateY(-80px);
+  }
+  .cg-grain {
+    opacity: 0.02;
+  }
+}
+
+.cg-title-copy {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: clamp(0.5rem, 2vh, 1rem);
+}
+
+.cg-title-kicker {
+  font-family: Cinzel, serif;
+  font-size: clamp(0.5rem, 1.1vw, 0.62rem);
+  letter-spacing: 0.55em;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.42);
+  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+}
+
+.cg-title-main {
+  margin: 0 0 1rem;
+  font-family: Cinzel, serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 0.42em;
+  line-height: 1.05;
+  text-shadow: 0 0 40px rgba(100, 220, 180, 0.15);
+}
+
+.cg-title-main__line {
+  display: block;
+  font-size: clamp(1.85rem, 7vw, 3.75rem);
+}
+
+.cg-title-main__line--second {
+  font-size: clamp(1.35rem, 5.5vw, 2.85rem);
+  letter-spacing: 0.62em;
+  margin-top: 0.2rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.cg-title-lede {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  line-height: 1.5;
+  color: rgba(244, 255, 251, 0.88);
+  margin: 0 auto 1rem;
+  max-width: 38em;
+}
+
+.cg-title-lede strong {
+  color: #c8ffe8;
+  font-weight: 600;
+}
+
+.cg-enter-maze {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.72rem 1.85rem;
+  border-radius: 999px;
+  font-family: Cinzel, serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  text-indent: 0.38em;
+  color: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  border: 1px solid rgba(234, 255, 245, 0.35);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(14px) saturate(1.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 18px 48px rgba(0, 18, 12, 0.5);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cg-enter-maze:hover {
+  border-color: rgba(200, 255, 230, 0.55);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.08)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 20px 56px rgba(0, 30, 22, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cg-enter-maze {
+    backdrop-filter: blur(10px) saturate(1.05);
+  }
+}
+
+/* --- Run glass row --- */
+.cg-maze-row-wrap {
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem) clamp(2.25rem, 5vh, 3.5rem);
+}
+
+.cg-maze-row__heading {
+  text-align: center;
+  font-family: Cinzel, serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.48em;
+  font-weight: 500;
+  color: rgba(244, 255, 251, 0.45);
+  margin-bottom: 0.65rem;
+}
+
+.cg-maze-row__egg-note {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto clamp(1rem, 2.5vw, 1.35rem);
+  padding: 0 clamp(0.75rem, 3vw, 1.5rem);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+  color: rgba(170, 230, 210, 0.55);
+}
+
+.cg-maze-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+  max-width: min(1320px, 100%);
+  margin: 0 auto;
+}
+
+.cg-shell .glass-card {
+  border-radius: 26px;
+  padding: clamp(1.15rem, 2.2vw, 1.65rem);
+  border: 1px solid var(--glass-edge);
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.06)
+  );
+  backdrop-filter: blur(16px) saturate(1.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 22px 50px rgba(0, 22, 17, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 280px;
+}
+
+.cg-shell .glass-card__label {
+  font-family: Cinzel, serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  color: rgba(244, 255, 251, 0.92);
+  text-transform: uppercase;
+}
+
+.cg-shell .glass-card__headline {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #b8ffe8;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+.cg-shell .glass-card__body {
+  font-size: 0.86rem;
+  line-height: 1.52;
+  color: rgba(244, 255, 251, 0.84);
+  flex: 1;
+}
+
+.cg-shell .glass-card__meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(234, 248, 242, 0.5);
+}
+
+.cg-shell .glass-card--run4 {
+  border-color: rgba(180, 220, 200, 0.22);
+}
+
+.cg-shell .glass-card__locked-tag {
+  color: rgba(255, 200, 160, 0.65);
+}
+
+.cg-shell .glass-card__btn--locked {
+  cursor: pointer;
+  background: rgba(40, 60, 52, 0.55);
+  color: rgba(230, 248, 240, 0.75);
+  border-color: rgba(120, 160, 140, 0.35);
+}
+
+.cg-shell .glass-card__btn--locked:hover {
+  background: rgba(50, 78, 64, 0.65);
+  color: rgba(240, 255, 248, 0.92);
+  border-color: rgba(160, 210, 180, 0.45);
+}
+
+.cg-shell .glass-card__btn {
+  align-self: flex-start;
+  margin-top: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.15rem;
+  border-radius: 999px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  color: #03150f;
+  background: rgba(200, 255, 232, 0.9);
+  border: 1px solid rgba(234, 255, 245, 0.55);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.cg-shell .glass-card__btn:hover {
+  background: rgba(223, 255, 235, 0.96);
+  border-color: rgba(234, 255, 245, 0.85);
+  color: #021208;
+}
+
+@media (max-width: 1024px) and (min-width: 601px) {
+  .cg-maze-row {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.35rem;
+    gap: clamp(14px, 2vw, 20px);
+  }
+  .cg-shell .glass-card {
+    flex: 0 0 min(88vw, 360px);
+    scroll-snap-align: start;
+    backdrop-filter: blur(14px) saturate(1.08);
+  }
+}
+
+@media (max-width: 600px) {
+  .cg-maze-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .cg-shell .glass-card {
+    min-height: 0;
+    backdrop-filter: blur(14px) saturate(1.08);
+  }
+  .cg-title-copy {
+    max-width: 100%;
+  }
+  .cg-monolith-cluster {
+    width: min(72vw, 280px);
+    height: min(40vh, 300px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cg-shell .glass-card {
+    backdrop-filter: blur(10px) saturate(1.05);
+  }
+}

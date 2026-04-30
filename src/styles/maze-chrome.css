@@ -1,0 +1,254 @@
+/* CHRONOS GRID — in-game chrome: void maze, mint glow, glass panels (green isometric mood) */
+
+.chronos-chrome.game-viewport {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 18%, rgba(45, 120, 98, 0.22), transparent 55%),
+    radial-gradient(ellipse 90% 80% at 50% 100%, #021208 0%, #010807 55%, #000 100%);
+  outline-color: rgba(60, 140, 110, 0.35);
+}
+
+/* Starfield + subtle swirl in the void (behind canvas, above base bg) */
+.chronos-chrome.game-viewport::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 38%),
+    radial-gradient(1px 1px at 8% 12%, rgba(200, 255, 220, 0.35), transparent),
+    radial-gradient(1px 1px at 22% 8%, rgba(180, 250, 210, 0.25), transparent),
+    radial-gradient(1px 1px at 78% 18%, rgba(200, 255, 230, 0.3), transparent),
+    radial-gradient(1px 1px at 91% 28%, rgba(160, 240, 200, 0.22), transparent),
+    radial-gradient(1px 1px at 15% 62%, rgba(190, 255, 220, 0.2), transparent),
+    radial-gradient(1px 1px at 55% 44%, rgba(170, 245, 200, 0.18), transparent),
+    radial-gradient(1px 1px at 88% 72%, rgba(200, 255, 215, 0.24), transparent),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size:
+    auto,
+    auto,
+    auto,
+    auto,
+    auto,
+    auto,
+    auto,
+    auto,
+    200px 200px;
+  mix-blend-mode: soft-light;
+}
+
+.chronos-chrome .hud-strip-top {
+  background: linear-gradient(180deg, rgba(32, 88, 68, 0.95) 0%, rgba(10, 36, 28, 0.98) 100%);
+  border-bottom: 1px solid rgba(120, 220, 180, 0.18);
+  box-shadow:
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    0 0 32px rgba(40, 160, 120, 0.08),
+    0 4px 20px rgba(0, 0, 0, 0.55);
+}
+
+.chronos-chrome .hud-strip-bottom {
+  background: linear-gradient(0deg, rgba(6, 28, 22, 0.98) 0%, rgba(14, 52, 40, 0.92) 100%);
+  border-top: 1px solid rgba(120, 220, 180, 0.15);
+}
+
+.chronos-chrome .whisper-caption {
+  background: linear-gradient(180deg, rgba(18, 52, 40, 0.94) 0%, rgba(6, 22, 18, 0.97) 100%);
+  border-top: 1px solid rgba(100, 200, 160, 0.2);
+  color: rgba(240, 255, 248, 0.92);
+}
+
+.chronos-chrome .screen-overlay {
+  background: rgba(2, 14, 10, 0.88);
+  backdrop-filter: blur(14px) saturate(1.05);
+  border: 1px solid rgba(100, 200, 160, 0.12);
+  box-shadow: inset 0 0 80px rgba(0, 40, 28, 0.5);
+}
+
+.chronos-chrome .menu-btn {
+  background: linear-gradient(165deg, rgba(50, 120, 92, 0.55) 0%, rgba(12, 40, 32, 0.9) 100%);
+  border: 1px solid rgba(160, 255, 210, 0.22);
+  color: #f0fff8;
+  box-shadow:
+    0 12px 40px rgba(0, 20, 14, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.chronos-chrome .menu-btn:hover,
+.chronos-chrome .menu-btn:focus-visible {
+  border-color: rgba(190, 255, 220, 0.45);
+  background: linear-gradient(165deg, rgba(60, 140, 108, 0.65) 0%, rgba(16, 52, 40, 0.95) 100%);
+}
+
+.chronos-chrome .win-overlay {
+  background: rgba(2, 18, 12, 0.9);
+}
+
+.chronos-chrome .win-title {
+  color: #c8ffe8;
+  text-shadow: 0 0 36px rgba(100, 220, 170, 0.35);
+}
+
+/* Briefing — dark glass “maze slab” instead of paper UI */
+/* Briefing “abyss” skin: `src/styles/briefing-below.css` */
+
+/* Play route chrome */
+.play-route {
+  background: #010807;
+}
+
+.play-route__bar {
+  background: rgba(4, 22, 16, 0.88);
+  border-bottom: 1px solid rgba(120, 210, 170, 0.2);
+  backdrop-filter: blur(12px);
+}
+
+.play-route__back {
+  border: 1px solid rgba(160, 240, 200, 0.25);
+  color: #eaf8f2;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.play-route__label {
+  color: rgba(200, 240, 220, 0.55);
+}
+
+/* Easter unlock party (game + landing) */
+.egg-party-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.egg-party-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 12, 10, 0.82);
+  backdrop-filter: blur(10px);
+}
+
+.egg-party-confetti {
+  position: absolute;
+  top: -12px;
+  width: 7px;
+  height: 11px;
+  border-radius: 1px;
+  opacity: 0.92;
+  animation-name: egg-party-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+
+@keyframes egg-party-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.egg-party-card {
+  position: relative;
+  z-index: 2;
+  max-width: 420px;
+  margin: 0 20px;
+  padding: 28px 26px 24px;
+  border-radius: 14px;
+  border: 1px solid rgba(120, 220, 180, 0.35);
+  background: linear-gradient(
+    165deg,
+    rgba(24, 56, 44, 0.95) 0%,
+    rgba(6, 22, 18, 0.98) 100%
+  );
+  box-shadow:
+    0 24px 80px rgba(0, 20, 14, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  text-align: center;
+}
+
+.egg-party-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.16em;
+  color: rgba(168, 230, 200, 0.85);
+  margin: 0 0 12px;
+}
+
+.egg-party-title {
+  margin: 0 0 14px;
+  font-size: 1.35rem;
+  line-height: 1.35;
+  color: #e8fff4;
+}
+
+.egg-party-body {
+  margin: 0 0 22px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(220, 240, 230, 0.82);
+}
+
+.egg-party-btn {
+  min-width: 200px;
+}
+
+/* Run IV lock explainer (marketing) */
+.run4-lock-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.run4-lock-scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background: rgba(1, 8, 6, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+.run4-lock-card {
+  position: relative;
+  z-index: 1;
+  max-width: 400px;
+  margin: 0 18px;
+  padding: 26px 22px 22px;
+  border-radius: 12px;
+  border: 1px solid rgba(100, 200, 160, 0.28);
+  background: rgba(8, 28, 22, 0.96);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.run4-lock-title {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+  color: #dfffea;
+}
+
+.run4-lock-body {
+  margin: 0 0 12px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(210, 235, 225, 0.88);
+}
+
+.run4-lock-progress {
+  margin: 0 0 18px;
+  font-size: 0.88rem;
+  color: rgba(180, 220, 200, 0.75);
+}

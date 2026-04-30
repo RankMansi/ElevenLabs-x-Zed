@@ -1,0 +1,40 @@
+{
+  "runId": "run1",
+  "displayName": "THE METRONOME",
+  "description": "Simple A/B toggle every 20 seconds. The maze breathes on a fixed schedule. Learn the rhythm.",
+  "mode": "periodic-ab",
+  "periodMs": 20000,
+  "warningMs": 5000,
+  "states": {
+    "A": {
+      "id": "A",
+      "label": "Base layout",
+      "description": "The carved maze as generated — more open west corridor, primary path runs N→E→S.",
+      "wallOverrides": []
+    },
+    "B": {
+      "id": "B",
+      "label": "Shifted layout",
+      "description": "Opens east passage and southern shortcut. Closes the direct western approach. The lower half breathes.",
+      "wallOverrideCount": 6,
+      "note": "Actual toggles are generated at runtime by generateSafeStateB(maze, seed+1, 6)"
+    }
+  },
+  "sequence": ["A", "B", "A", "B", "A", "B", "A", "B", "A", "B"],
+  "maxShifts": 10,
+  "narration": {
+    "firstShift": "shift_warning_1",
+    "subsequentShifts": ["shift_warning_2", "shift_warning_3"]
+  },
+  "design": {
+    "intent": "Teach the player that the maze operates on a clock. The 20-second period is slow enough to feel safe, fast enough to matter mid-corridor.",
+    "playerLearning": [
+      "Audio klaxon fires 5s before every shift",
+      "TTS confirms the schedule at start",
+      "Walls move visually — player can see them grind",
+      "Ghost wall alpha shows the old configuration for 1.8s"
+    ],
+    "crueltyLevel": 1,
+    "notes": "No lies. No decoy exits. Dread multiplier reduced to 0.6. Ghost walls disabled for clarity."
+  }
+}

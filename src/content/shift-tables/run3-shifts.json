@@ -1,0 +1,62 @@
+{
+  "runId": "run3",
+  "description": "Dual clock: major every 30s reorganises large wall sets; minor every 10s applies small local edits on top of whatever major state is active.",
+  "mode": "dual-clock",
+  "majorPeriodMs": 30000,
+  "minorPeriodMs": 10000,
+  "states": {
+    "A": {
+      "id": "A",
+      "label": "Base layout",
+      "description": "The carved maze as generated — all original passages intact. Both clocks start from this state."
+    },
+    "B-major": {
+      "id": "B-major",
+      "label": "Major reorganisation",
+      "description": "14 internal walls toggled open. The south-east quadrant opens a new express route; the north-west closes two shortcuts. Player can be mid-corridor when this fires — anti-softlock nudge applies."
+    },
+    "B-minor": {
+      "id": "B-minor",
+      "label": "Minor local edits",
+      "description": "4 internal walls toggled open in the centre of the maze. Subtle enough that a moving player may not immediately notice, but halts dead-end predictions. Applied on top of whichever major state is currently active."
+    }
+  },
+  "schedule": {
+    "major": {
+      "periodMs": 30000,
+      "warningMs": 5000,
+      "behavior": "Alternates A ↔ B-major on every tick.",
+      "hudsLabel": "MAJOR",
+      "sfx": "wall_grind",
+      "klaxon": "klaxon_shift",
+      "ttsVariants": ["shift_warning_1", "shift_warning_2", "shift_warning_3"]
+    },
+    "minor": {
+      "periodMs": 10000,
+      "warningMs": 5000,
+      "behavior": "Applies B-minor delta on top of whichever major state is active. Does NOT alternate — always the same 4 toggles, re-applied.",
+      "hudLabel": "MINOR",
+      "sfx": "wall_grind",
+      "klaxon": null,
+      "ttsVariants": []
+    }
+  },
+  "decoyExits": {
+    "count": 2,
+    "sfxOnEnter": "stinger_not_exit",
+    "ttsOnEnter": ["decoy_exit_1", "decoy_exit_2"],
+    "description": "Two decoy exits placed on the perimeter. Each plays stinger_not_exit and a TTS line so the player can learn to distinguish them from the real exit (which plays stinger_success)."
+  },
+  "antiSoftlock": {
+    "validateAfterMajorShift": true,
+    "validateAfterMinorShift": false,
+    "nudgeToNearestFreeCell": true,
+    "ensureExitReachable": true
+  },
+  "notes": [
+    "Both clocks run independently — they can (and will) fire close together, creating a brief period of maximum confusion.",
+    "The minor clock fires 3 times per major cycle, so the player experiences: minor, minor, major+minor (same tick), minor, minor, major+minor ... etc.",
+    "Shift warnings (5 s before) are shown on the HUD for BOTH clocks but only the major fires a klaxon SFX.",
+    "Ghost walls (memory-glitch) are enabled for major shifts only to keep minor shifts subtle."
+  ]
+}

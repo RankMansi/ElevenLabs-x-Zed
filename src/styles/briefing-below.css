@@ -1,0 +1,312 @@
+/* CHRONOS GRID — voice briefing: void / vertical beam / mint type (poster-inspired) */
+
+.briefing-modal.briefing-modal--abyss {
+  padding: clamp(1rem, 4vw, 2.5rem);
+  background: var(--void, #021a12);
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.briefing-modal.briefing-modal--abyss::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+}
+
+.briefing-modal__atmo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Central light column — soft edges, stippled via mask */
+.briefing-modal__beam {
+  position: absolute;
+  left: 50%;
+  top: -8%;
+  bottom: -8%;
+  width: min(20vw, 200px);
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: center top;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(26, 77, 64, 0.55) 18%,
+    rgba(120, 210, 175, 0.18) 50%,
+    rgba(26, 77, 64, 0.55) 82%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mix-blend-mode: screen;
+  opacity: 0.92;
+  animation: briefing-beam-open 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes briefing-beam-open {
+  from {
+    transform: translateX(-50%) scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 0.92;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .briefing-modal__beam {
+    animation: none;
+    transform: translateX(-50%) scaleY(1);
+    opacity: 0.75;
+  }
+}
+
+/* Faint cavern line work */
+.briefing-modal__ridge {
+  position: absolute;
+  bottom: 0;
+  width: 38%;
+  height: 55%;
+  opacity: 0.1;
+  background: repeating-linear-gradient(
+    -18deg,
+    transparent 0 6px,
+    rgba(184, 255, 217, 0.12) 6px 7px
+  );
+  clip-path: polygon(0 100%, 40% 8%, 100% 100%);
+}
+
+.briefing-modal__ridge--l {
+  left: -5%;
+}
+
+.briefing-modal__ridge--r {
+  right: -5%;
+  transform: scaleX(-1);
+}
+
+/* Watching eyes in the dark */
+.briefing-modal__eyes {
+  position: absolute;
+  inset: 0;
+}
+
+.briefing-modal__eye {
+  position: absolute;
+  width: 14px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(220, 255, 240, 0.55) 0%, rgba(120, 200, 160, 0.15) 70%, transparent 100%);
+  box-shadow: 0 0 14px rgba(160, 255, 210, 0.25);
+  opacity: 0.55;
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__panel {
+  position: relative;
+  z-index: 2;
+  width: min(34rem, 100%);
+  max-height: min(88vh, 720px);
+  overflow: auto;
+  padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1.25rem, 3vw, 2rem);
+  margin: 0 auto;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: rgba(236, 255, 248, 0.94);
+}
+
+.briefing-modal__mast {
+  text-align: center;
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+.briefing-modal__slit-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.briefing-modal__slit-glow {
+  width: 3px;
+  height: clamp(28px, 6vh, 48px);
+  border-radius: 2px;
+  background: linear-gradient(180deg, #dfffeb 0%, rgba(184, 255, 217, 0.35) 100%);
+  box-shadow:
+    0 0 20px rgba(180, 255, 220, 0.45),
+    0 0 48px rgba(100, 200, 160, 0.25);
+}
+
+.briefing-modal__figure {
+  width: 5px;
+  height: 8px;
+  margin-top: 2px;
+  background: rgba(10, 20, 16, 0.9);
+  border-radius: 1px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.briefing-modal__run-title {
+  font-family: system-ui, 'Segoe UI', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  letter-spacing: 0.38em;
+  text-indent: 0.38em;
+  text-transform: uppercase;
+  color: #dfffeb;
+  line-height: 1.05;
+  margin: 0;
+  text-shadow: 0 0 40px rgba(100, 200, 160, 0.2);
+}
+
+.briefing-modal__run-sub {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: clamp(0.62rem, 1.5vw, 0.72rem);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(184, 255, 217, 0.65);
+}
+
+.briefing-modal__voice-tag {
+  margin-top: 0.65rem;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.52rem;
+  letter-spacing: 0.28em;
+  color: rgba(160, 210, 185, 0.4);
+  text-transform: uppercase;
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__error {
+  text-align: center;
+  color: #ffc9b8;
+  font-size: var(--fs-xs, 0.75rem);
+  margin-bottom: 1rem;
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__caption {
+  min-height: 6.5rem;
+  font-family: var(--font-condensed, system-ui, sans-serif);
+  font-size: clamp(0.95rem, 2.1vw, 1.1rem);
+  line-height: 1.65;
+  letter-spacing: 0.06em;
+  color: rgba(240, 255, 250, 0.88);
+  text-shadow: 0 1px 18px rgba(0, 20, 14, 0.85);
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__cursor {
+  display: inline-block;
+  width: 0.5ch;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  background: var(--mint-glow, #b8ffd9);
+  box-shadow: 0 0 8px rgba(184, 255, 217, 0.5);
+  animation: briefing-cursor-blink 0.9s step-end infinite;
+}
+
+@keyframes briefing-cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2, 0.5rem);
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  padding-top: 1rem;
+  border-top: 1px solid rgba(100, 160, 130, 0.2);
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__ready {
+  position: relative;
+  overflow: hidden;
+  min-width: 220px;
+  padding: var(--sp-3, 0.75rem) var(--sp-6, 1.5rem);
+  cursor: pointer;
+  border-radius: 0;
+  border: 1px solid rgba(220, 255, 240, 0.35);
+  background: rgba(4, 22, 16, 0.65);
+  color: #f4fffb;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  font-family: system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.68rem;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 32px rgba(80, 200, 150, 0.12);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, background 0.2s ease;
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__ready:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__ready:not(:disabled):hover {
+  border-color: rgba(240, 255, 250, 0.55);
+  background: rgba(12, 48, 36, 0.75);
+  transform: translateY(1px);
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__ready-stripe {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(184, 255, 217, 0.08) 100%);
+  transform: translateY(100%);
+  transition: transform 0.28s ease;
+  pointer-events: none;
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__ready:not(:disabled):hover .briefing-modal__ready-stripe {
+  transform: translateY(0);
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__ready-label {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-condensed, system-ui, sans-serif);
+  font-weight: 700;
+  font-size: var(--fs-lg, 1.125rem);
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__skip {
+  color: rgba(170, 220, 195, 0.45);
+  text-decoration: none;
+  letter-spacing: 0.22em;
+  font-size: 0.55rem;
+}
+
+.briefing-modal.briefing-modal--abyss .briefing-modal__skip:hover {
+  color: rgba(220, 255, 240, 0.85);
+}

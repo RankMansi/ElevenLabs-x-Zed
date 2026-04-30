@@ -1,0 +1,105 @@
+/* === CHRONOS GRID — Global Styles === */
+
+/* Google Fonts: Rajdhani (condensed) + Share Tech Mono */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+/* Design tokens */
+@import './styles/tokens.css';
+@import './styles/layout.css';
+@import './styles/components.css';
+@import './styles/maze-chrome.css';
+@import './styles/briefing-below.css';
+
+/* --- Box model reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Root / body --- */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-void);
+  color: var(--color-text-primary);
+  font-family: var(--font-condensed);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #070809;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* --- Button reset --- */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* --- Selection --- */
+::selection {
+  background: rgba(106, 232, 255, 0.2);
+  color: var(--color-text-primary);
+}
+
+/* --- Scrollbar (hidden) --- */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Focus visible (keyboard nav) --- */
+:focus-visible {
+  outline: 1px solid var(--color-alarm-dim);
+  outline-offset: 2px;
+}
+
+/* --- Utility classes --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+}
+
+.text-condensed {
+  font-family: var(--font-condensed);
+}
+
+.text-upper {
+  text-transform: uppercase;
+  letter-spacing: var(--ls-title);
+}
+
+.text-dim {
+  color: var(--color-text-dim);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-alarm {
+  color: var(--color-alarm-dim);
+}
+
+.text-exit {
+  color: var(--color-exit);
+}

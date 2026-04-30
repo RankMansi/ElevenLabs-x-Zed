@@ -1,0 +1,37 @@
+{
+  "runId": "run2",
+  "description": "A/B toggle every 15s. On each B→A transition the decoy hum moves to a new quadrant.",
+  "periodMs": 15000,
+  "mode": "periodic-ab-with-decoy",
+
+  "stateA": {
+    "id": "A",
+    "description": "Base layout — primary corridors open north and east toward exit."
+  },
+
+  "stateB": {
+    "id": "B",
+    "description": "Alternate layout — opens south passage, partially closes north shortcut. Decoy hum shifts quadrant."
+  },
+
+  "decoyHumPositions": [
+    { "label": "NW",  "xFrac": 0.15, "yFrac": 0.15 },
+    { "label": "NE",  "xFrac": 0.85, "yFrac": 0.15 },
+    { "label": "SW",  "xFrac": 0.15, "yFrac": 0.85 },
+    { "label": "SE",  "xFrac": 0.85, "yFrac": 0.85 }
+  ],
+
+  "shiftNarration": {
+    "preShiftWarningCues": ["shift_warning_1", "shift_warning_2", "shift_warning_3"],
+    "onShiftCues": [],
+    "lieSegmentProbability": 0.5,
+    "lieSeeds": [4660, 22136, 39612, 57072, 9320, 44256]
+  },
+
+  "notes": [
+    "Lie cues are seeded per-segment via lie-rng.ts — not runtime random.",
+    "50% of directional TTS hints in this run are fabricated.",
+    "The decoy hum cycles through the four quadrant positions on each major shift.",
+    "One decoy exit is placed on the perimeter — triggers stinger_not_exit SFX."
+  ]
+}
