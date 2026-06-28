@@ -1,6 +1,6 @@
 # Chronos Grid
 
-Built a browser game for the ElevenLabs × Zed collaboration: a **dark, top-down maze** where you only see a **small circle of light**, walls **reshape on a fixed schedule**, and **audio (including ElevenLabs TTS)** is part of solving—not just atmosphere. The marketing site and the maze share one stack: **Vite, React, TypeScript**, served from the `chronos-grid` package.
+Built a browser game inspired by the famous novel and movie "The Maze Runner" for the ElevenLabs × Zed collaboration: a **dark, top-down maze** where you only see a **small circle of light**, walls **reshape on a fixed schedule**, and **audio (including ElevenLabs TTS)** is part of solving—not just atmosphere. The marketing site and the maze share one stack: **Vite, React, TypeScript**, served from the `chronos-grid` package.
 
 ## What’s in the game
 
